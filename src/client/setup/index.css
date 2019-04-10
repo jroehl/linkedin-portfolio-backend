@@ -1,0 +1,118 @@
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+ol {
+  margin-left: 0;
+}
+
+i {
+  cursor: pointer;
+}
+
+form i {
+  font-size: 2rem;
+  padding: 0.75rem;
+}
+
+form ul {
+  text-align: left;
+}
+
+button {
+  display: block;
+  margin: 10px;
+  height: 32px;
+  line-height: 16px;
+  width: 146px;
+}
+
+button:disabled {
+  background-color: #e8e8e8;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+i.fa-info-circle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 2rem;
+}
+
+#spreadsheetId {
+  cursor: pointer;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+}
+
+.box > div {
+  text-align: center;
+  padding: 24px;
+}
+
+a > img {
+  padding: 10px;
+}
+
+.box,
+.box__input,
+.box__status {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box__input {
+  display: none;
+}
+
+.box.has-advanced-upload {
+  outline: 2px dashed #d4d4d4;
+  outline-offset: -10px;
+  transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
+}
+
+.box.is-dragover {
+  outline-offset: -20px;
+  outline-color: #d4d4d4;
+}
+
+.box .box__status {
+  white-space: pre-wrap;
+}
+
+.box__file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}

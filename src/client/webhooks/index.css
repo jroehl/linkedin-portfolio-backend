@@ -1,0 +1,27 @@
+ul code {
+  padding-right: 12px;
+}
+ul button {
+  margin-top: 6px;
+  line-height: 12px;
+  height: auto;
+  padding: 6px 24px;
+}
+
+textarea {
+  display: none;
+}
+
+button {
+  display: block;
+  margin: 10px;
+  height: 32px;
+  line-height: 16px;
+  width: 146px;
+}
+
+button:disabled {
+  background-color: #e8e8e8;
+  pointer-events: none;
+  cursor: not-allowed;
+}

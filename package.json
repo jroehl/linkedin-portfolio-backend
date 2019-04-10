@@ -1,0 +1,76 @@
+{
+  "name": "linkedin-portfolio-backend",
+  "version": "1.0.0",
+  "description": "A simple google spreadsheet add-on to create the backend for your personal linkedin portfolio website",
+  "author": {
+    "name": "jroehl",
+    "email": "mail@johannroehl.de",
+    "url": "https://johannroehl.de"
+  },
+  "homepage": "https://johannroehl.de/",
+  "license": "MIT",
+  "main": "src/server/index.js",
+  "scripts": {
+    "build": "npm run build-server && npm run build-client",
+    "build-client": "webpack --config webpack.config.client.js",
+    "build-server": "webpack --config webpack.config.server.js",
+    "dev-client": "webpack-dev-server --config webpack.config.client.js",
+    "dev-server": "webpack-dev-server --config webpack.config.server.js",
+    "upload": "clasp push",
+    "deploy": "npm run build && npm run upload"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jroehl/linkedin-portfolio-backend.git"
+  },
+  "keywords": [
+    "google-apps-script",
+    "gsuite",
+    "apps-script",
+    "gsheet-webhooks",
+    "linkedin-portfolio-backend",
+    "linkedin-portfolio",
+    "linkedin-website"
+  ],
+  "dependencies": {
+    "jszip": "^3.2.1",
+    "papaparse": "^4.6.3",
+    "spectre.css": "^0.5.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/plugin-transform-member-expression-literals": "^7.2.0",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/plugin-transform-property-literals": "^7.2.0",
+    "@babel/preset-env": "^7.3.4",
+    "@google/clasp": "^2.0.1",
+    "@types/google-apps-script": "^0.0.38",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-array-includes": "^2.0.3",
+    "clean-webpack-plugin": "^2.0.0",
+    "copy-webpack-plugin": "^5.0.0",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-googleappsscript": "^1.0.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "gas-lib": "^2.0.2",
+    "gas-webpack-plugin": "^1.0.2",
+    "html-webpack-inline-source-plugin": "0.0.10",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "prettier": "^1.16.4",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.3.0"
+  }
+}

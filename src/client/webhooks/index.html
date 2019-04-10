@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <base target="_top" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+    />
+  </head>
+  <body>
+    <div class="row">
+      <div class="nine columns">
+        <label for="url-ipt">Url</label>
+        <input class="u-full-width" type="url" placeholder="https://" id="url-ipt" required />
+      </div>
+      <div class="three columns">
+        <label for="method-ipt">Method</label>
+        <select class="u-full-width" id="method-ipt" required>
+          <option value="GET">GET</option>
+          <option value="POST">POST</option>
+          <option value="PUT">PUT</option>
+          <option value="PATCH">PATCH</option>
+          <option value="DELETE">DELETE</option>
+        </select>
+      </div>
+    </div>
+    <label for="body-ipt">JSON-Body</label>
+    <textarea class="u-full-width" placeholder="{ ... }" id="body-ipt"></textarea>
+    <input class="button-primary" type="submit" value="Add Webhook" />
+    <p>Installed webhooks</p>
+    <ul>
+      <li><em>No webhooks installed</em></li>
+    </ul>
+  </body>
+</html>
