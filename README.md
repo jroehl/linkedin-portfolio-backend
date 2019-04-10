@@ -7,6 +7,7 @@ A simple google spreadsheet add-on to create the backend for your personal linke
   - [Created with](#created-with)
   - [Contributions 🙏🏼](#contributions-)
   - [License 📄](#license-)
+  - [ToDo](#todo)
 
 ## How To 💁‍♂️
 
@@ -15,7 +16,9 @@ Attach Add-On to Google Spreadsheet and open *Linkedin Portfolio* menu.
 1. Go through setup scripts.
 2. Attach webhooks to rebuild netlify on changes
 
-## Created with 
+## Created with
+
+[![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
 
 Created with the help of the [google apps script starter](https://github.com/labnol/apps-script-starter)
 
@@ -27,4 +30,7 @@ Contributions and feature requests are welcome. If you are using the Google Apps
 
 [MIT License](https://github.com/jroehl/linkedin-portfolio-backend/blob/master/LICENSE)
 
-[![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
+## ToDo
+
+- [ ] Add *About* menu
+- [ ] Add *Meta* section explanation
