@@ -2,7 +2,7 @@ import { getRandomColor, normalizeKey } from './utils';
 
 export default {
   validKeys: [
-    'META',
+    'SECTIONS',
     'HEADER',
     'SUMMARY',
     'PROFILE',
@@ -17,9 +17,9 @@ export default {
     key,
     normalized: normalizeKey(key)
   })),
-  metaWorksheet: [
+  sectionsWorksheet: [
     ['Header', 'Keys', 'BackgroundColor', 'FontColor'],
-    ['$background', 'HEADER, SUMMARY, EMAIL_ADDRESSES, PROFILE', getRandomColor(), 'white'],
+    ['$BACKGROUND', 'HEADER, SUMMARY, EMAIL_ADDRESSES, PROFILE', getRandomColor(), 'white'],
     ['projects', 'PROJECTS', getRandomColor(), 'white'],
     ['education', 'EDUCATION', getRandomColor(), 'white'],
     ['certifications', 'CERTIFICATIONS', getRandomColor(), 'white'],

@@ -8,8 +8,8 @@
 export const importData = files => {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheets = ss.getSheets();
-  const metaSheet = sheets.reduce((red, sheet) => {
-    if (sheet.getSheetName() === 'Meta') return sheet;
+  const sectionsSheet = sheets.reduce((red, sheet) => {
+    if (sheet.getSheetName() === 'Sections') return sheet;
     ss.deleteSheet(sheet);
     return red || sheet;
   }, null);
@@ -28,6 +28,6 @@ export const importData = files => {
     };
   });
 
-  if (metaSheet) ss.setActiveSheet(metaSheet);
+  if (sectionsSheet) ss.setActiveSheet(sectionsSheet);
   return newSheets;
 };

@@ -158,12 +158,12 @@ export const onEditWebhook = evt => {
 };
 
 /**
- * Trigger range validation for 'onEditMeta'
+ * Trigger range validation for 'onEditSections'
  *
  * @export
  * @param {Event} evt
  */
-export const onEditMeta = evt => {
+export const onEditSections = evt => {
   const { range, value, triggerUid } = evt;
   const sheet = range.getSheet();
   if (sheet.getName() !== 'Meta') return;

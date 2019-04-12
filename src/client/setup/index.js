@@ -47,7 +47,7 @@ const init = ({ spreadsheetId }) => {
         createBtn.innerHTML = 'create';
         createBtn.false = true;
       })
-      .createMetaSheet();
+      .createSectionsSheet();
   };
 
   /**

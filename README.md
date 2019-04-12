@@ -7,7 +7,6 @@ A simple google spreadsheet add-on to create the backend for your personal linke
   - [Created with](#created-with)
   - [Contributions 🙏🏼](#contributions-)
   - [License 📄](#license-)
-  - [ToDo](#todo)
 
 ## How To 💁‍♂️
 
@@ -29,8 +28,3 @@ Contributions and feature requests are welcome. If you are using the Google Apps
 ## License 📄
 
 [MIT License](https://github.com/jroehl/linkedin-portfolio-backend/blob/master/LICENSE)
-
-## ToDo
-
-- [ ] Add *About* menu
-- [ ] Add *Meta* section explanation

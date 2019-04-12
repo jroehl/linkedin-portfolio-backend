@@ -5,10 +5,10 @@ import {
   getTriggersData,
   addWebhookTrigger,
   onEditWebhook,
-  onEditMeta
+  onEditSections
 } from './trigger';
 import { importData } from './import';
-import { createMetaSheet } from './meta';
+import { createSectionsSheet } from './sections';
 import config from '../config';
 import { publishToWeb, error, info, log } from './server-utils';
 
@@ -19,7 +19,7 @@ global.getTriggersData = () => JSON.stringify(getTriggersData());
 global.addWebhookTrigger = addWebhookTrigger;
 global.deleteTriggerById = deleteTriggerById;
 
-global.createMetaSheet = createMetaSheet;
+global.createSectionsSheet = createSectionsSheet;
 
 global.showSetup = showSetup;
 global.importData = data => importData(JSON.parse(data));
@@ -32,7 +32,7 @@ global.getMeta = () => ({
 });
 
 global.onEditWebhook = onEditWebhook;
-global.onEditMeta = onEditMeta;
+global.onEditSections = onEditSections;
 
 global.showError = showError;
 
