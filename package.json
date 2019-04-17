@@ -17,6 +17,7 @@
     "dev-client": "webpack-dev-server --config webpack.config.client.js",
     "dev-server": "webpack-dev-server --config webpack.config.server.js",
     "upload": "clasp push",
+    "logs": "clasp logs",
     "deploy": "npm run build && npm run upload"
   },
   "repository": {
@@ -35,7 +36,8 @@
   "dependencies": {
     "jszip": "^3.2.1",
     "papaparse": "^4.6.3",
-    "spectre.css": "^0.5.8"
+    "spectre.css": "^0.5.8",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

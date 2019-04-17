@@ -1,7 +1,7 @@
 import { getProperty, setProperty } from './props';
 import { validateData } from '../utils';
 import config from '../config';
-import { error } from './server-utils';
+import { cellValidator } from './sections';
 
 /**
  * Get the stored triggers data
@@ -110,11 +110,43 @@ export const deleteTriggers = () => Object.keys(getTriggersData()).map(deleteTri
  * @param {object} data
  * @param {string} func
  */
-export const addTrigger = (data, func) => {
+export const addOnEditTrigger = (data, func) => {
   const ss = SpreadsheetApp.getActive();
   const trigger = ScriptApp.newTrigger(func)
     .forSpreadsheet(ss)
     .onEdit()
+    .create();
+  addTriggerData(trigger, data);
+};
+
+/**
+ * Add the onChange trigger for function name
+ *
+ * @export
+ * @param {object} data
+ * @param {string} func
+ */
+export const addOnChangeTrigger = (data, func) => {
+  const ss = SpreadsheetApp.getActive();
+  const trigger = ScriptApp.newTrigger(func)
+    .forSpreadsheet(ss)
+    .onChange()
+    .create();
+  addTriggerData(trigger, data);
+};
+
+/**
+ * Add the onOpen trigger for function name
+ *
+ * @export
+ * @param {object} data
+ * @param {string} func
+ */
+export const addOnOpenTrigger = (data, func) => {
+  const ss = SpreadsheetApp.getActive();
+  const trigger = ScriptApp.newTrigger(func)
+    .forSpreadsheet(ss)
+    .onOpen()
     .create();
   addTriggerData(trigger, data);
 };
@@ -127,7 +159,7 @@ export const addTrigger = (data, func) => {
  */
 export const addWebhookTrigger = data => {
   validateData(data);
-  addTrigger(data, 'onEditWebhook');
+  addOnEditTrigger(data, 'onEditWebhook');
 };
 
 /**
@@ -163,34 +195,28 @@ export const onEditWebhook = evt => {
  * @export
  * @param {Event} evt
  */
-export const onEditSections = evt => {
-  const { range, value, triggerUid } = evt;
-  const sheet = range.getSheet();
-  if (sheet.getName() !== 'Meta') return;
-  const { cols } = getTriggerData(triggerUid);
-  const col = range.getColumn();
-  if (value) {
-    if (cols.color.includes(col)) {
-      range.setBackground(value);
-    }
-    if (cols.keys.includes(col)) {
-      const validKeys = config.validKeys.map(({ key }) => key).filter(key => key !== 'META');
-      try {
-        value.split(',').forEach(key => {
-          if (!validKeys.includes(key.trim())) {
-            throw new Error(`Key "${key.trim()}" is invalid`);
-          }
-        });
+export const validateSectionsSheet = evt => {
+  const { triggerUid } = evt;
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sectionsSheet = ss.getSheetByName(config.sectionsKey);
+  if (!sectionsSheet) return;
+  const {
+    cols,
+    range: { max }
+  } = getTriggerData(triggerUid);
 
-        range.setBackground('white').clearNote();
-      } catch (err) {
-        error(err);
-        range
-          .setBackground('#FF7E6B')
-          .setNote(
-            `${err.message}\nValue must be comma separated list of \n-${validKeys.join('\n- ')}`
-          );
-      }
+  const validator = cellValidator();
+
+  for (let rowIdx = 2; rowIdx <= max.row; rowIdx += 1) {
+    for (let colIdx = 1; colIdx <= max.col; colIdx += 1) {
+      const range = sectionsSheet.getRange(rowIdx, colIdx);
+      Object.keys(cols).forEach(key => {
+        const validate = validator[key];
+        if (validate && cols[key].includes(colIdx)) {
+          cols[key].forEach(() => validate(range));
+        }
+      });
     }
   }
+  sectionsSheet.autoResizeColumns(1, max.col);
 };

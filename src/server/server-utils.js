@@ -1,6 +1,7 @@
 /**
  * Publish the spreadsheet to the web
  *
+ * @export
  */
 export const publishToWeb = () => {
   const ss = SpreadsheetApp.getActiveSpreadsheet();

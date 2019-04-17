@@ -1,3 +1,5 @@
+import config from '../config';
+
 /**
  * Import the passed data to individual worksheets
  *
@@ -9,7 +11,7 @@ export const importData = files => {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheets = ss.getSheets();
   const sectionsSheet = sheets.reduce((red, sheet) => {
-    if (sheet.getSheetName() === 'Sections') return sheet;
+    if (sheet.getSheetName() === config.sectionsKey) return sheet;
     ss.deleteSheet(sheet);
     return red || sheet;
   }, null);

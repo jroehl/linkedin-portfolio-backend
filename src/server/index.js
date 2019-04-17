@@ -5,7 +5,7 @@ import {
   getTriggersData,
   addWebhookTrigger,
   onEditWebhook,
-  onEditSections
+  validateSectionsSheet
 } from './trigger';
 import { importData } from './import';
 import { createSectionsSheet } from './sections';
@@ -32,7 +32,7 @@ global.getMeta = () => ({
 });
 
 global.onEditWebhook = onEditWebhook;
-global.onEditSections = onEditSections;
+global.validateSectionsSheet = validateSectionsSheet;
 
 global.showError = showError;
 
