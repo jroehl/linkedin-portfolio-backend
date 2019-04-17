@@ -1,5 +1,5 @@
 import { addMenu } from './menu';
-import { showWebhooks, showSetup, showError } from './ui';
+import { showWebhooks, showAbout, showSetup, showError } from './ui';
 import {
   deleteTriggerById,
   getTriggersData,
@@ -15,6 +15,7 @@ import { publishToWeb, error, info, log } from './server-utils';
 global.onOpen = addMenu;
 
 global.showWebhooks = showWebhooks;
+global.showAbout = showAbout;
 global.getTriggersData = () => JSON.stringify(getTriggersData());
 global.addWebhookTrigger = addWebhookTrigger;
 global.deleteTriggerById = deleteTriggerById;

@@ -13,7 +13,8 @@ module.exports = {
   context: __dirname,
   entry: {
     webhooks: './src/client/webhooks/index.js',
-    setup: './src/client/setup/index.js'
+    setup: './src/client/setup/index.js',
+    about: './src/client/about/index.js'
   },
   output: {
     filename: `temp-[name].js`,
@@ -86,6 +87,13 @@ module.exports = {
       chunks: ['setup'],
       template: './src/client/setup/index.html',
       filename: 'setup.html'
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      inlineSource: '.(js|css)$',
+      chunks: ['about'],
+      template: './src/client/about/index.html',
+      filename: 'about.html'
     }),
     new MiniCssExtractPlugin({
       filename: 'temp-[name].css'

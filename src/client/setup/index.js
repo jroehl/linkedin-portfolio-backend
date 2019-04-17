@@ -20,7 +20,7 @@ const init = ({ spreadsheetId }) => {
 
   const publishBtn = document.querySelector('#publish-btn');
   publishBtn.onclick = () => {
-    publishBtn.innerHTML = 'publishing...';
+    publishBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> publishing...';
     publishBtn.disabled = true;
     google.script.run
       .withSuccessHandler(() => {
@@ -36,7 +36,7 @@ const init = ({ spreadsheetId }) => {
 
   const createBtn = document.querySelector('#create-btn');
   createBtn.onclick = () => {
-    createBtn.innerHTML = 'creating...';
+    createBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> creating...';
     createBtn.disabled = true;
     google.script.run
       .withSuccessHandler(() => {

@@ -7,7 +7,8 @@ export const addMenu = () => {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('LinkedIn Portfolio')
     .addItem('Setup', 'showSetup')
-    .addSeparator()
     .addItem('Webhooks', 'showWebhooks')
+    .addSeparator()
+    .addItem('About', 'showAbout')
     .addToUi();
 };

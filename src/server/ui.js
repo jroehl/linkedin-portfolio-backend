@@ -14,6 +14,19 @@ export const showWebhooks = () => {
 };
 
 /**
+ * Show the webhooks modal
+ *
+ * @export
+ */
+export const showAbout = () => {
+  const html = HtmlService.createHtmlOutputFromFile('about.html')
+    .setWidth(350)
+    .setHeight(400);
+
+  SpreadsheetApp.getUi().showModalDialog(html, 'About');
+};
+
+/**
  * Show the setup modal
  *
  * @export
