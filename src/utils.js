@@ -1,6 +1,7 @@
 /**
  * Check if url is valid
  *
+ * @export
  * @param {string} str
  * @returns {boolean}
  */
@@ -20,6 +21,7 @@ export const isValidUrl = str => {
 /**
  * Check if string is valid json
  *
+ * @export
  * @param {string} str
  * @returns {boolean}
  */
@@ -35,6 +37,7 @@ export const isValidJSON = str => {
 /**
  * Validate data for webhook
  *
+ * @export
  * @param {object} data
  * @throws {Error}
  */
@@ -53,7 +56,9 @@ export const validateData = data => {
 };
 
 /**
- * Convert string to Camel Case
+ * Convert string to CamelCase
+ *
+ * @export
  * @param {string} s
  * @returns {string}
  */
@@ -61,10 +66,31 @@ export const toCamelCase = s => s.charAt(0).toUpperCase() + s.slice(1).toLowerCa
 
 /**
  * Normalize string to camel case with whitespace
+ *
+ * @export
  * @param {string} key
  * @returns {string}
  */
 export const normalizeKey = key => {
   const parts = key.split('_');
   return parts.map(toCamelCase).join(' ');
+};
+
+/**
+ * Convert column number to letter
+ *
+ * @export
+ * @param {number} column
+ * @returns {string}
+ */
+export const columnToLetter = column => {
+  let col = column;
+  let temp;
+  let letter = '';
+  while (col > 0) {
+    temp = (col - 1) % 26;
+    letter = String.fromCharCode(temp + 65) + letter;
+    col = (col - temp - 1) / 26;
+  }
+  return letter.toUpperCase();
 };

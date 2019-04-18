@@ -1,7 +1,8 @@
 import { getProperty, setProperty } from './props';
 import { validateData } from '../utils';
 import config from '../config';
-import { cellValidator } from './sections';
+import { validateSheet, validateRange } from './validators';
+import { getMaxCol } from './server-utils';
 
 /**
  * Get the stored triggers data
@@ -196,44 +197,21 @@ export const onEditWebhook = evt => {
  * @param {Event} evt
  */
 export const validateSectionsSheet = evt => {
-  const { triggerUid } = evt;
+  // const { triggerUid } = evt;
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sectionsSheet = ss.getSheetByName(config.sectionsKey);
   if (!sectionsSheet) return;
-  const {
-    cols,
-    range: { max }
-  } = getTriggerData(triggerUid);
+  // const _ = getTriggerData(triggerUid);
 
   // const selection = sectionsSheet.getSelection();
   const activeRangeList = sectionsSheet.getActiveRangeList();
 
-  const validator = cellValidator();
-
   if (activeRangeList) {
-    activeRangeList.getRanges().forEach(range => {
-      console.log(`range: ${range.getA1Notation()}`);
-      const col = range.getColumn();
-      // const range = sectionsSheet.getRange(row, col);
-      Object.keys(cols).forEach(key => {
-        const validate = validator[key];
-        if (validate && cols[key].includes(col)) {
-          cols[key].forEach(() => validate(range));
-        }
-      });
-    });
+    activeRangeList.getRanges().forEach(validateRange);
   }
-  // WORKAROUND update all cells until https://issuetracker.google.com/issues/115931946 is fixed
-  for (let row = 2; row <= max.row; row += 1) {
-    Object.keys(cols).forEach(key => {
-      const validate = validator[key];
-      if (validate) {
-        cols[key].forEach(col => {
-          const range = sectionsSheet.getRange(row, col);
-          validate(range);
-        });
-      }
-    });
-  }
-  sectionsSheet.autoResizeColumns(1, max.col);
+
+  // @WORKAROUND update all cells until https://issuetracker.google.com/issues/115931946 is fixed
+  validateSheet(sectionsSheet);
+
+  sectionsSheet.autoResizeColumns(1, getMaxCol(sectionsSheet, 1));
 };

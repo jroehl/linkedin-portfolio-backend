@@ -1,3 +1,5 @@
+import { columnToLetter } from '../utils';
+
 /**
  * Publish the spreadsheet to the web
  *
@@ -14,6 +16,37 @@ export const publishToWeb = () => {
   resource.publishAuto = true;
   resource.publishedOutsideDomain = true;
   Drive.Revisions.update(resource, fileId, revisionId);
+};
+
+/**
+ * Get the max row of column
+ *
+ * @param {Sheet} sheet
+ * @param {number} column
+ * @returns {number}
+ * @export
+ */
+export const getMaxRow = (sheet, column) => {
+  const col = columnToLetter(column);
+  return sheet
+    .getRange(`${col}1:${col}`)
+    .getValues()
+    .filter(String).length;
+};
+
+/**
+ * Get the max col of row
+ *
+ * @param {Sheet} sheet
+ * @param {number} row
+ * @returns {number}
+ * @export
+ */
+export const getMaxCol = (sheet, row) => {
+  return sheet
+    .getRange(`${row}:${row}`)
+    .getValues()
+    .filter(String).length;
 };
 
 /* eslint-disable no-console */

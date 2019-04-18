@@ -1,4 +1,3 @@
-import tinycolor from 'tinycolor2';
 import config from '../config';
 import {
   addOnEditTrigger,
@@ -6,63 +5,7 @@ import {
   addOnChangeTrigger,
   addOnOpenTrigger
 } from './trigger';
-
-const protect = (range, name) => {
-  const protection = range.protect();
-  if (name) {
-    const description = `Please do not set values directly - use the built-in ${name} dropdown (values will be filled in automatically)`;
-    protection.setDescription(description);
-    range.setNote(description);
-  }
-};
-
-const validateFonts = (range, ff, fc) => {
-  const fontFamily = ff || range.getFontFamily();
-  const fontColor = fc || range.getFontColor();
-  const background = tinycolor(fontColor).isDark() ? 'white' : 'black';
-  range
-    .setBackground(background)
-    .setFontFamily(fontFamily)
-    .setValue(`${fontFamily} | ${fontColor}`)
-    .setFontColor(fontColor);
-  protect(range, '"Text color" & "Font"');
-};
-
-export const cellValidator = () => {
-  const validKeys = config.validSections.slice(1);
-  return {
-    keys: range => {
-      try {
-        range
-          .getValue()
-          .split(',')
-          .forEach(k => {
-            if (!validKeys.includes(k.trim())) throw new Error(`Key "${k.trim()}" is invalid`);
-          });
-
-        range.setBackground('white').clearNote();
-      } catch (err) {
-        range
-          .setBackground('#FF7E6B')
-          .setNote(
-            `${err.message}\nValue must be comma separated list of \n- ${validKeys.join('\n- ')}`
-          );
-      }
-      range.setFontFamily('Courier New');
-    },
-    backgroundcolor: (range, val) => {
-      const background = val || range.getBackground();
-      const fontColor = tinycolor(background).isDark() ? 'white' : 'black';
-      range
-        .setBackground(background)
-        .setValue(background)
-        .setFontColor(fontColor);
-      protect(range, '"Fill color"');
-    },
-    text: validateFonts,
-    headings: validateFonts
-  };
-};
+import { validateSheet } from './validators';
 
 /**
  * Create the sections sheet
@@ -103,35 +46,18 @@ export const createSectionsSheet = () => {
 
   deleteTriggerByFuncName('validateSectionsSheet');
 
-  const validator = cellValidator();
-
   const data = {
-    range,
-    cols: config.sectionsWorksheet[0].reduce((red, k, i) => {
-      const lowerKey = k.toLowerCase();
-      const col = validator[lowerKey];
-      if (!col) return red;
-      return {
-        ...red,
-        [lowerKey]: [...(red[lowerKey] || []), i + 1]
-      };
-    }, {})
+    range
   };
 
-  config.sectionsWorksheet.slice(1).forEach((row, i) => {
-    Object.keys(data.cols).forEach(k => {
-      const validate = validator[k];
-      data.cols[k].forEach(col =>
-        validate(sectionsSheet.getRange(i + 2, col), ...row[col - 1].split(' | '))
-      );
-    });
-  });
+  validateSheet(sectionsSheet, true);
 
   addOnEditTrigger(data, 'validateSectionsSheet');
   addOnChangeTrigger(data, 'validateSectionsSheet');
   addOnOpenTrigger(data, 'validateSectionsSheet');
 
   ss.setActiveSheet(sectionsSheet);
+  ss.moveActiveSheet(1);
   sectionsSheet.setFrozenRows(1);
   sectionsSheet.autoResizeColumns(1, range.max.col);
 
