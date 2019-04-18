@@ -205,18 +205,35 @@ export const validateSectionsSheet = evt => {
     range: { max }
   } = getTriggerData(triggerUid);
 
+  // const selection = sectionsSheet.getSelection();
+  const activeRangeList = sectionsSheet.getActiveRangeList();
+
   const validator = cellValidator();
 
-  for (let rowIdx = 2; rowIdx <= max.row; rowIdx += 1) {
-    for (let colIdx = 1; colIdx <= max.col; colIdx += 1) {
-      const range = sectionsSheet.getRange(rowIdx, colIdx);
+  if (activeRangeList) {
+    activeRangeList.getRanges().forEach(range => {
+      console.log(`range: ${range.getA1Notation()}`);
+      const col = range.getColumn();
+      // const range = sectionsSheet.getRange(row, col);
       Object.keys(cols).forEach(key => {
         const validate = validator[key];
-        if (validate && cols[key].includes(colIdx)) {
+        if (validate && cols[key].includes(col)) {
           cols[key].forEach(() => validate(range));
         }
       });
-    }
+    });
+  }
+  // WORKAROUND update all cells until https://issuetracker.google.com/issues/115931946 is fixed
+  for (let row = 2; row <= max.row; row += 1) {
+    Object.keys(cols).forEach(key => {
+      const validate = validator[key];
+      if (validate) {
+        cols[key].forEach(col => {
+          const range = sectionsSheet.getRange(row, col);
+          validate(range);
+        });
+      }
+    });
   }
   sectionsSheet.autoResizeColumns(1, max.col);
 };
