@@ -10,10 +10,7 @@ A simple google spreadsheet add-on to create the backend for your personal linke
 
 ## How To 💁‍♂️
 
-Attach Add-On to Google Spreadsheet and open *LinkedIn Portfolio* menu.
-
-1. Go through setup scripts.
-2. Attach webhooks to rebuild netlify on changes
+Check out [johannroehl.de](https://johannroehl.de/linkedin-portfolio-website).
 
 ## Created with
 
