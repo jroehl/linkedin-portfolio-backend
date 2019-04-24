@@ -1,8 +1,8 @@
-# Linkedin Portfolio Website
+# LinkedIn Portfolio Website
 
 A simple google spreadsheet add-on to create the backend for your personal linkedin portfolio website
 
-- [Linkedin Portfolio Website](#linkedin-portfolio-website)
+- [LinkedIn Portfolio Website](#linkedin-portfolio-website)
   - [How To 💁‍♂️](#how-to-️)
   - [Created with](#created-with)
   - [Contributions 🙏🏼](#contributions-)
@@ -10,7 +10,7 @@ A simple google spreadsheet add-on to create the backend for your personal linke
 
 ## How To 💁‍♂️
 
-Attach Add-On to Google Spreadsheet and open *Linkedin Portfolio* menu.
+Attach Add-On to Google Spreadsheet and open *LinkedIn Portfolio* menu.
 
 1. Go through setup scripts.
 2. Attach webhooks to rebuild netlify on changes
