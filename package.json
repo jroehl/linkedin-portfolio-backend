@@ -35,7 +35,7 @@
   ],
   "dependencies": {
     "jszip": "^3.2.1",
-    "papaparse": "^4.6.3",
+    "papaparse": "^5.2.0",
     "spectre.css": "^0.5.8",
     "tinycolor2": "^1.4.1"
   },
