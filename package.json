@@ -66,7 +66,7 @@
     "gas-lib": "^2.0.2",
     "gas-webpack-plugin": "^1.0.2",
     "html-webpack-inline-source-plugin": "0.0.10",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^0.5.0",
     "prettier": "^1.16.4",
     "style-loader": "^0.23.1",
