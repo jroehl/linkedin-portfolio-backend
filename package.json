@@ -34,7 +34,7 @@
     "linkedin-website"
   ],
   "dependencies": {
-    "jszip": "^3.7.0",
+    "jszip": "^3.8.0",
     "papaparse": "^5.2.0",
     "spectre.css": "^0.5.8",
     "tinycolor2": "^1.4.1"
